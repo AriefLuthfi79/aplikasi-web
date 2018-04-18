@@ -2,7 +2,7 @@ package com.arief.belajar.aplikasi.webapp;
 
 import java.sql.*;
 
-public class MahasiswaDao{
+public class MahasiswaDao {
 	private Connection koneksiDatabase;
 	private String dbDriver = "com.mysql.jdbc.Driver";	
 	private String dbUrl = "jdbc:mysql://localhost:3306/webapp";
@@ -10,7 +10,7 @@ public class MahasiswaDao{
 	private String dbPassword = "";
 	
 	public void connect(){
-		try{
+		try {
 			Class.forName(dbDriver);
 			koneksiDatabase = DriverManager.getConnection(dbUrl,dbUsername,dbPassword);
 		} catch (Exception err){
@@ -19,8 +19,8 @@ public class MahasiswaDao{
 	}
 	
 	public void disconnect(){
-        	try{
-                if(koneksiDatabase != null){
+        	try {
+                    if(koneksiDatabase != null){
         		koneksiDatabase.close(); 
         	    }
         	} catch (SQLException err){
@@ -29,7 +29,7 @@ public class MahasiswaDao{
 	}
 	
 	public void simpan(Mahasiswa m){
-		try{
+		try {
 			connect();
 	
 			String sql = "insert into mahasiswa (npm,nama,tempat_lahir,tanggal_lahir,jenis_kelamin,alamat) values(?,?,?,?,?,?)";
@@ -44,7 +44,7 @@ public class MahasiswaDao{
                         
 			ps.executeUpdate();
 			
-            disconnect();
+	   	        disconnect();
 		} catch (Exception err){
 			err.printStackTrace();
 		}	
